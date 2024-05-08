@@ -57,31 +57,31 @@ function createDivsForColors(colorArray) {
   }
 }
 
-var clickCount = 0;
-//console.log('Click Count:', clickCount);
+var cardFlip = 0;
+console.log('Card Flip:', cardFlip);
 var card1 = 0;
 var card2 = 0;
   
 // TODO: Implement this function!
 function handleCardClick(event) {
   // you can use event.target to see which element was clicked
-  clickCount++;
-  //console.log('Click Count:', clickCount);
+  cardFlip++;
+  console.log('Card Flip:', cardFlip);
   //console.log('You Just Clicked: ', event.target);
   var cardColor = event.target.className;
   //console.log('Card Color Is: ', cardColor);
   
-  if (clickCount === 1) {
+  if (cardFlip === 1) {
     card1 = event.target;
     card1.style.backgroundColor = cardColor;
     //console.log('Card 1: ', card1);
   }
-  else if (clickCount === 2) {
+  if (cardFlip === 2) {
     if (event.target === card1) {
       console.log('Invalid Choice');
       setTimeout(() => {
         card1.style.backgroundColor = 'white';
-        clickCount = 0;
+        cardFlip = 0;
       }, 1000);
     }
     else {
@@ -90,17 +90,21 @@ function handleCardClick(event) {
     //console.log('Card 2: ', card2);
       if (card1.className === card2.className) {
         console.log('MATCH!!!');
-        clickCount = 0;
+        cardFlip = 0;
       }
       else {
         console.log('Not a Match :(');
         setTimeout(() => {
           card1.style.backgroundColor = 'white';
           card2.style.backgroundColor = 'white';
-          clickCount = 0;
+          cardFlip = 0;
         }, 1000);
       }
     }
+  }
+  if (cardFlip > 2) {
+    cardFlip = 0;
+    return;
   }
 }
 
